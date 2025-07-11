@@ -80,4 +80,9 @@ public class Waiter {
     }
 
 
+    public void waitUntilNumberOfElementsToBe(By locator, int expectedCount) {
+        new WebDriverWait(driver, defaultTimeout)
+                .until(ExpectedConditions.numberOfElementsToBe(locator, expectedCount));
+    }
+
 }
