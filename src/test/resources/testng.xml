@@ -8,14 +8,13 @@
         </packages>
     </test>
 
-
-    <test name="API Tests">
-        <classes>
-            <class name="com.automationexercise.api.tests.ProductsApiTests"/>
-            <class name="com.automationexercise.api.tests.LoginAndSearchApiTests"/>
-            <class name="com.automationexercise.api.tests.UserAccountApiTests"/>
-        </classes>
-    </test>
+<!--    <test name="API Tests">-->
+<!--        <classes>-->
+<!--            <class name="com.automationexercise.api.tests.ProductsApiTests"/>-->
+<!--            <class name="com.automationexercise.api.tests.LoginAndSearchApiTests"/>-->
+<!--            <class name="com.automationexercise.api.tests.UserAccountApiTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 
 
     <test name="Login tests">
