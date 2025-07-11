@@ -1,0 +1,45 @@
+# Назва робочого процесу, яка буде відображатися у вкладці "Actions" вашого репозиторію
+name: Java CI with Maven and TestNG
+
+# Тригери: умови, за яких буде запускатися цей робочий процес
+on:
+  # Запускати при push-і в гілку 'main'
+  push:
+    branches: [ "main" ]
+  # Запускати при створенні pull request-а до гілки 'main'
+  pull_request:
+    branches: [ "main" ]
+
+# Завдання (jobs), які будуть виконуватися
+jobs:
+  # Назва завдання. Може бути будь-якою, наприклад, 'build', 'test'
+  build:
+
+    # Вказуємо операційну систему, на якій буде виконуватися завдання
+    runs-on: ubuntu-latest
+
+    # Кроки (steps), які складають завдання
+    steps:
+      # Крок 1: Клонування коду вашого репозиторію
+      # Використовуємо готовий action 'actions/checkout'
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Крок 2: Налаштування середовища Java (JDK)
+      # Використовуємо готовий action 'actions/setup-java'
+      - name: Set up JDK 24
+        uses: actions/setup-java@v4
+        with:
+          # Вказуємо версію Java, яка потрібна для вашого проєкту
+          java-version: '24'
+          # Вказуємо дистрибутив JDK
+          distribution: 'temurin'
+          # Кешуємо залежності Maven для прискорення майбутніх запусків
+          cache: maven
+
+      # Крок 3: Запуск тестів за допомогою Maven, використовуючи testng.xml
+      # Ця команда вказує плагіну Maven Surefire на використання вашого файлу testng.xml.
+      # Переконайтеся, що шлях до testng.xml вказано правильно відносно кореня проєкту.
+      # У цьому прикладі очікується, що testng.xml знаходиться в корені репозиторію.
+      - name: Run TestNG suite with Maven
+        run: mvn -B test -Dsurefire.suiteXmlFiles=testng.xml
