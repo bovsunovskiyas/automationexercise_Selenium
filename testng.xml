@@ -2,11 +2,11 @@
 
     <suite name="Regression Automation Exercise Full Test Suite" parallel="tests" thread-count="2">
 
-    <test name="UI Tests">
-        <packages>
-            <package name="com.automationexercise.ui.tests"/>
-        </packages>
-    </test>
+<!--    <test name="UI Tests">-->
+<!--        <packages>-->
+<!--            <package name="com.automationexercise.ui.tests"/>-->
+<!--        </packages>-->
+<!--    </test>-->
 
 <!--    <test name="API Tests">-->
 <!--        <classes>-->

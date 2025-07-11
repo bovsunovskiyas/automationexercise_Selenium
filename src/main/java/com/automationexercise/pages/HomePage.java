@@ -20,7 +20,8 @@ public class HomePage extends BasePage{
 
 
         public HomePage openMainPage(){
-                String baseUrl = SecretsManager.get("BASE_URL");
+//                String baseUrl = SecretsManager.get("BASE_URL");
+                String baseUrl = "https://automationexercise.com/";
                 getDriver().get(baseUrl);
                 waiter.waitUntilUrlToBe(baseUrl);
                 return this;
