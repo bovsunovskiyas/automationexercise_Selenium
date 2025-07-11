@@ -16,6 +16,8 @@ public class HomePage extends BasePage{
         // Locators
         private final By loggedInAsLocator = By.xpath("//a[contains(text(),'Logged in as')]");
         private final By featuresItemsTitleLocator = By.xpath("//*[@class='features_items']//h2[@class='title text-center']");
+        private final By homePageSliderLocator = By.id("slider");
+
 
         public HomePage openMainPage(){
                 String baseUrl = SecretsManager.get("BASE_URL");
@@ -34,6 +36,9 @@ public class HomePage extends BasePage{
                 return waiter.waitUntilVisibleOfElementLocated(logoMainLocator).isDisplayed();
         }
 
+        public boolean isHomePageVisible() {
+                return waiter.waitUntilVisibleOfElementLocated(homePageSliderLocator).isDisplayed();
+        }
 
 }
 

@@ -1,11 +1,11 @@
-package com.automationexercise.login_tests;
+package com.automationexercise.ui.login_tests;
 
 import com.automationexercise.SecretsManager;
 import com.automationexercise.pages.HomePage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import com.automationexercise.BaseTest;
+import com.automationexercise.ui.BaseTest;
 
 public class LoginUserTest extends BaseTest {
 
@@ -24,30 +24,29 @@ public class LoginUserTest extends BaseTest {
                 .clickLoginButton();
     }
 
-    //Test Case 2: Login User with correct email and password
-    @Test
+
+    @Test(description = "Test Case 2: Login User with correct email and password")
     public void testLoginUserWithCorrectCredentials() {
         Assert.assertTrue(homePage.getMainMenu().getLoggedInAsText().contains("dani"), "Logged in username does not match.");
     }
 
-    //        Test Case 4: Logout User
-        @Test
-        public void testLogOutUser() {
 
-            homePage
-                    .getMainMenu()
-                    .clickLogoutButton()
-                    .assertLoginPageSuccessfullyLoaded();
+    @Test(description = "Test Case 4: Logout User")
+    public void testLogOutUser() {
 
+        homePage
+                .getMainMenu()
+                .clickLogoutButton()
+                .assertLoginPageSuccessfullyLoaded();
 
-            // 10. Verify that user is navigated to login page
-            // A reliable way to verify this is by checking the URL and the presence of the 'Login to your account' header.
+        // 10. Verify that user is navigated to login page
+        // A reliable way to verify this is by checking the URL and the presence of the 'Login to your account' header.
 //            String currentUrl = driver.getCurrentUrl();
 //            Assert.assertTrue(currentUrl.contains("/login"), "User is not on the login page after logout.");
 //
 //            WebElement loginToAccount = driver.findElement(By.xpath("//h2[text()='Login to your account']"));
 //            Assert.assertTrue(loginToAccount.isDisplayed(), "'Login to your account' header is not visible after logout.");
-        }
+    }
 
 
 

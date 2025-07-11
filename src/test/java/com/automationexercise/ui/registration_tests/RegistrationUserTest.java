@@ -1,11 +1,11 @@
-package com.automationexercise.registration_tests;
+package com.automationexercise.ui.registration_tests;
 
 import com.automationexercise.helpers.DataRandomizer;
 import com.automationexercise.models.UserRegistrationDetails;
 import com.automationexercise.pages.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import com.automationexercise.BaseTest;
+import com.automationexercise.ui.BaseTest;
 
 import static com.automationexercise.helpers.DataRandomizer.*;
 
