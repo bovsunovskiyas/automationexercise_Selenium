@@ -22,7 +22,7 @@ public class LoginUserTest extends BaseTest {
 //                .enterLoginEmail(SecretsManager.get("USER_EMAIL"))
 //                .enterLoginPassword(SecretsManager.get("USER_PASSWORD"))
                 .enterLoginEmail("780a_burt.abernathy@gmail.com")
-                .enterLoginPassword(SecretsManager.get("gcc9ebfs8bj2"))
+                .enterLoginPassword("gcc9ebfs8bj2")
                 .clickLoginButton();
     }
 
