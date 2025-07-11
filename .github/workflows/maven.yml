@@ -42,4 +42,8 @@ jobs:
       # Переконайтеся, що шлях до testng.xml вказано правильно відносно кореня проєкту.
       # У цьому прикладі очікується, що testng.xml знаходиться в корені репозиторію.
       - name: Run TestNG suite with Maven
+        env:
+          BASE_URL: ${{ secrets.BASE_URL }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: mvn -B test -Dsurefire.suiteXmlFiles=testng.xml
