@@ -9,7 +9,7 @@ on:
 
   # Запускати при створенні pull request-а до гілки 'main'
   pull_request:
-    branches: [ "main", "master" ]
+    branches: [ main, master ]
 
 # Завдання (jobs), які будуть виконуватися
 jobs:
