@@ -1,20 +1,20 @@
 # Назва робочого процесу, яка буде відображатися у вкладці "Actions" вашого репозиторію
-name: Java CI with Maven and TestNG
+name: Test Java CI with Maven and TestNG and Allure Report
 
 # Тригери: умови, за яких буде запускатися цей робочий процес
 on:
   # Запускати при push-і в гілку 'main'
   push:
-    branches: [ "main" ]
+    branches: [ main, master ]
+
   # Запускати при створенні pull request-а до гілки 'main'
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
 # Завдання (jobs), які будуть виконуватися
 jobs:
   # Назва завдання. Може бути будь-якою, наприклад, 'build', 'test'
   build:
-
     # Вказуємо операційну систему, на якій буде виконуватися завдання
     runs-on: ubuntu-latest
 
@@ -47,3 +47,26 @@ jobs:
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: mvn -B test -Dsurefire.suiteXmlFiles=testng.xml
+
+      - name: Get Allure history
+        uses: actions/checkout@v4
+        if: always()
+        continue-on-error: true
+        with:
+          ref: gh-pages
+          path: gh-pages
+
+      - name: Generate Allure Report
+        uses: simple-elf/allure-report-action@master
+        if: always()
+        with:
+          allure_results: target/allure-results
+          allure_history: allure-history
+          keep_reports: 20
+
+      - name: Deploy report to Github Pages
+        if: always()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./allure-history

@@ -2,7 +2,6 @@ package com.automationexercise.pages.interfaces;
 
 import com.automationexercise.models.Product;
 import com.automationexercise.pages.BasePage;
-import com.automationexercise.pages.ProductsPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
