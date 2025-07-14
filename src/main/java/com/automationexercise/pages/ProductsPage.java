@@ -49,21 +49,16 @@ public class ProductsPage extends BasePage implements IProductable {
         return this;
     }
 
-    public ProductsPage clickSearchButton() {
+    public SearchedProductsPage clickSearchButton() {
         waiter.waitUntilClickable(searchButtonLocator).click();
-        return this;
+        return new SearchedProductsPage();
     }
 
     public boolean isSearchedProductsTitleVisible() {
         return waiter.waitUntilVisibleOfElementLocated(searchedProductsTitleLocator).isDisplayed();
     }
 
-    public ProductsPage assertNumberOfProducts(int expectedCount) {
-        // Локатор 'containerLocator' успадковано від інтерфейсу IProductable.
-        // Цей метод тепер чекає, поки кількість елементів не досягне очікуваного значення.
-        waiter.waitUntilNumberOfElementsToBe(containerLocator, expectedCount);
-        return this;
-    }
+
 
 
 //    public ProductsPage assertNumberOfProducts(int expectedCount) {

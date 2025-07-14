@@ -1,5 +1,6 @@
 package com.automationexercise.ui.products_tests;
 
+import com.automationexercise.pages.SearchedProductsPage;
 import com.automationexercise.ui.BaseTest;
 import com.automationexercise.models.Product;
 import com.automationexercise.pages.HomePage;
@@ -37,8 +38,17 @@ public class ProductTests extends BaseTest {
         // Попередні кроки (1-5) виконано в @BeforeMethod
 
         List<Product> allProducts = productsPage
-//                .assertNumberOfProducts(34)
+                .assertNumberOfProducts(34)
                 .getAllProducts();
+
+        Product actualProduct = allProducts.get(0);
+        Product expectedProduct = Product.builder()
+                .name("Blue Top")
+                .price("Rs. 500").build();
+        System.out.println(allProducts);
+
+        productsPage.assertProductDetails(actualProduct, expectedProduct);
+
 
         System.out.println(allProducts.get(5));
         System.out.println(allProducts.stream().count());
@@ -69,9 +79,34 @@ public class ProductTests extends BaseTest {
         // Попередні кроки (1-5) виконано в @BeforeMethod
 
         // 6. Enter product name in search input and click search button
-        String searchQuery = "Blue Top";
-        productsPage.enterSearchQuery(searchQuery)
+        String searchQuery = "top for";
+
+        SearchedProductsPage searchedProductsPage = productsPage
+                .enterSearchQuery(searchQuery)
                 .clickSearchButton();
+
+
+        List<Product> allProducts = searchedProductsPage
+                .assertNumberOfProducts(2)
+                .getAllProducts();
+        System.out.println(allProducts);
+
+
+        Product actualFirstProduct = allProducts.get(0);
+        Product expectedFirstProduct = Product.builder()
+                .name("Madame Top For Women")
+                .price("Rs. 1000").build();
+
+
+        searchedProductsPage.assertProductDetails(actualFirstProduct, expectedFirstProduct);
+
+        Product actualSecondProduct = allProducts.get(1);
+        Product expectedSecondProduct = Product.builder()
+                .name("Lace Top For Women")
+                .price("Rs. 1400").build();
+
+        searchedProductsPage.assertProductDetails(actualSecondProduct, expectedSecondProduct);
+
 
         // 7. Verify 'SEARCHED PRODUCTS' is visible
         Assert.assertTrue(productsPage.isSearchedProductsTitleVisible(), "'SEARCHED PRODUCTS' title is not visible.");
