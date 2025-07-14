@@ -13,7 +13,7 @@
         <maven.compiler.release>24</maven.compiler.release>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
-        <aspectj.version>1.9.21</aspectj.version>
+        <aspectj.version>1.9.24</aspectj.version>
         <allure.version>2.25.0</allure.version>
     </properties>
 
@@ -76,6 +76,13 @@
             <artifactId>allure-testng</artifactId>
             <version>${allure.version}</version>
         </dependency>
+
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>${aspectj.version}</version>
+            </dependency>
+
     </dependencies>
 
     <build>
@@ -130,14 +137,6 @@
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
                 </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.aspectj</groupId>
-                        <artifactId>aspectjweaver</artifactId>
-                        <version>${aspectj.version}</version>
-                    </dependency>
-                </dependencies>
-
             </plugin>
             <plugin>
                 <groupId>io.qameta.allure</groupId>
