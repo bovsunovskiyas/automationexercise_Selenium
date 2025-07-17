@@ -30,7 +30,7 @@ pipeline {
                 echo 'Запуск компіляції та виконання тестів...'
                 // Використовуємо Maven для очищення, компіляції та запуску тестів.
                 // Maven автоматично згенерує результати для Allure у папку target/allure-results
-                sh 'mvn -B test -Dsurefire.suiteXmlFiles=testng.xml'
+                sh 'mvn clean test'
             }
         }
     }
