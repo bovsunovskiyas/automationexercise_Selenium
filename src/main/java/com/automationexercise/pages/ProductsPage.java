@@ -3,10 +3,6 @@ package com.automationexercise.pages;
 import com.automationexercise.helpers.Waiter;
 import com.automationexercise.pages.interfaces.IProductable;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class ProductsPage extends BasePage implements IProductable {
 
@@ -32,14 +28,10 @@ public class ProductsPage extends BasePage implements IProductable {
         return waiter.waitUntilVisibleOfElementLocated(productsListLocator).isDisplayed();
     }
 
-    /**
-     * Отримує перший продукт зі списку за допомогою інтерфейсу і клікає на кнопку "View Product".
-     * @return Новий екземпляр сторінки ProductDetailPage.
-     */
-    public ProductDetailPage clickViewProductOfFirstProduct() {
+    public ProductDetailsPage clickViewProductOfFirstProduct() {
         // Використовуємо метод з інтерфейсу IProductable
         getAllProducts().get(0).getViewProductButton().click();
-        return new ProductDetailPage();
+        return new ProductDetailsPage();
     }
 
     // --- Methods for Search ---

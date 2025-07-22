@@ -2,4 +2,7 @@
     mvn versions:display-dependency-updates
 
 ### Running tests
-mvn -B test -Dsurefire.suiteXmlFiles=testng.xml
+mvn clean test
+
+### Generate report
+allure serve allure-results

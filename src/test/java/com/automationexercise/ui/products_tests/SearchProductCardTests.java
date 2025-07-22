@@ -1,7 +1,7 @@
 package com.automationexercise.ui.products_tests;
 
+import com.automationexercise.models.ProductCard;
 import com.automationexercise.ui.BaseTest;
-import com.automationexercise.models.Product;
 import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.ProductsPage;
 import org.testng.Assert;
@@ -9,7 +9,7 @@ import org.testng.annotations.Test;
 
 import java.util.List;
 
-public class SearchProductTests extends BaseTest {
+public class SearchProductCardTests extends BaseTest {
 
     @Test(description = "Test Case 9: Search Product")
     public void testSearchProduct() {
@@ -35,12 +35,12 @@ public class SearchProductTests extends BaseTest {
 
         // 8. Verify all the products related to search are visible
         // Отримуємо список об'єктів Product за допомогою методу з інтерфейсу
-        List<Product> products = productsPage.getAllProducts();
-        Assert.assertFalse(products.isEmpty(), "No products were found for the search query.");
+        List<ProductCard> productCards = productsPage.getAllProducts();
+        Assert.assertFalse(productCards.isEmpty(), "No products were found for the search query.");
 
         // Перевіряємо, що назва кожного знайденого продукту відповідає пошуковому запиту
-        for (Product product : products) {
-            String productName = product.getName();
+        for (ProductCard productCard : productCards) {
+            String productName = productCard.getName();
             Assert.assertTrue(productName.toLowerCase().contains(searchQuery.toLowerCase()),
                     "Product '" + productName + "' does not match the search query '" + searchQuery + "'.");
         }

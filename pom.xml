@@ -50,6 +50,13 @@
             <version>${aspectj.version}</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.assertj/assertj-core -->
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>4.0.0-M1</version>
+        </dependency>
+
         <!-- API Testing -->
         <dependency>
             <groupId>io.rest-assured</groupId>
