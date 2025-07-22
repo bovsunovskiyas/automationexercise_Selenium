@@ -56,8 +56,10 @@ pipeline {
          // чи були тести успішними, чи впали з помилкою.
          always {
              echo 'Генерація звіту Allure...'
-             // Allure також повинен успадкувати правильне середовище, налаштоване блоком 'tools'
              allure includeProperties: false, report: 'allure-report', results: [[path: 'target/allure-results']]
+
+             echo 'Архівуємо звіт Allure як артефакт...'
+                         archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
          }
      }
  }
