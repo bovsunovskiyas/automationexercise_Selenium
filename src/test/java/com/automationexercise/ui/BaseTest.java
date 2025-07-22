@@ -20,8 +20,8 @@ public abstract class BaseTest {
     @AfterMethod(alwaysRun = true)
     @Step("Close browser after each test")
     public void closeBrowser() {
-        BasePage.getDriver().quit();
+        if (BasePage.getDriver() != null) {
+            BasePage.getDriver().quit();
+        }
     }
-
-//
 }
