@@ -20,6 +20,18 @@ pipeline {
              }
          }
 
+         stage('Copy Allure History') {
+                     steps {
+                         echo 'Переносимо історію попередніх запусків...'
+                         sh '''
+                             mkdir -p target/allure-results/history
+                             if [ -d allure-report/history ]; then
+                                 cp -r allure-report/history target/allure-results/
+                             fi
+                         '''
+                     }
+                 }
+
                  // Стадія 2: Збірка та тестування
                  stage('Build & Test') {
                      steps {
@@ -33,7 +45,7 @@ pipeline {
 
                          echo 'Запуск збірки та виконання тестів...'
                          // Використовуємо 'verify', що є більш повною фазою життєвого циклу Maven
-                         sh 'mvn clean verify -B -Dsurefire.suiteXmlFiles=testng.xml'
+                         sh 'mvn clean test'
                      }
                  }
              }
@@ -44,8 +56,10 @@ pipeline {
          // чи були тести успішними, чи впали з помилкою.
          always {
              echo 'Генерація звіту Allure...'
-             // Allure також повинен успадкувати правильне середовище, налаштоване блоком 'tools'
              allure includeProperties: false, report: 'allure-report', results: [[path: 'target/allure-results']]
+
+             echo 'Архівуємо звіт Allure як артефакт...'
+                         archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true
          }
      }
  }

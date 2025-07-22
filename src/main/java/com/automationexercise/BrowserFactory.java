@@ -16,10 +16,7 @@ public class BrowserFactory {
         options.addArguments("--disable-dev-shm-usage"); // Уникаємо проблем з пам'яттю в контейнерах
         options.addArguments("--window-size=1920,1080"); // Встановлюємо розмір вікна
         options.addArguments("--remote-allow-origins=*"); // Дозволяємо віддалені підключення
-
         options.addArguments("--disable-gpu"); // Рекомендовано для headless режиму
-        String userDataDir = "/tmp/chrome-profile-" + UUID.randomUUID().toString();
-        options.addArguments("--user-data-dir=" + userDataDir);
 
         return new ChromeDriver(options);
     }
