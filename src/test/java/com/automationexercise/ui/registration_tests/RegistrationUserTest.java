@@ -3,6 +3,9 @@ package com.automationexercise.ui.registration_tests;
 import com.automationexercise.helpers.DataRandomizer;
 import com.automationexercise.models.UserRegistrationDetails;
 import com.automationexercise.pages.*;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import com.automationexercise.ui.BaseTest;
@@ -11,7 +14,8 @@ import static com.automationexercise.helpers.DataRandomizer.*;
 
 public class RegistrationUserTest extends BaseTest {
 
-
+    @Severity(SeverityLevel.BLOCKER)
+    @Feature(value = "Auth")
     @Test(description = "Test Case 1: Register User with valid details and verify account is created and deleted successfully")
     public void testRegisterUserFlow() {
 

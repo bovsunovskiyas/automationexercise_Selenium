@@ -2,6 +2,9 @@ package com.automationexercise.ui.login_tests;
 
 import com.automationexercise.SecretsManager;
 import com.automationexercise.pages.HomePage;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -29,13 +32,16 @@ public class LoginUserTest extends BaseTest {
     }
 
 
+    @Severity(SeverityLevel.BLOCKER)
+    @Feature(value = "Auth")
     @Test(description = "Test Case 2: Login User with correct email and password")
     @Step("Verify logged in username contains 'dani'")
     public void testLoginUserWithCorrectCredentials() {
         Assert.assertTrue(homePage.getMainMenu().getLoggedInAsText().contains("dani"), "Logged in username does not match.");
     }
 
-
+    @Severity(SeverityLevel.MINOR)
+    @Feature(value = "Auth")
     @Test(description = "Test Case 4: Logout User")
 //    @Step("Logout user and verify login page is loaded")
     public void testLogOutUser() {
