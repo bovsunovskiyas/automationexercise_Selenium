@@ -68,3 +68,26 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: allure-history
           keep_files: true
+
+
+      - name: 📤 Upload JaCoCo coverage report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
+
+      - name: 📤 Upload Checkstyle report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: checkstyle-report
+          path: target/site/checkstyle.html
+
+      - name: 📤 Upload SpotBugs report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: spotbugs-report
+          path: target/spotbugs.xml
+
