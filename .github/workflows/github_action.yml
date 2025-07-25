@@ -27,18 +27,17 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 🧪 Run Maven tests with JaCoCo, Checkstyle, SpotBugs
+      - name: 🧪 Run Maven tests + Quality checks
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
-        run: mvn clean verify checkstyle:check spotbugs:check
+        run: mvn clean verify checkstyle:check com.github.spotbugs:spotbugs-maven-plugin:check
 
       - name: 🛠 Install Allure Commandline
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - run: npm install -g allure-commandline
 
       - name: 💾 Restore Allure history
@@ -56,7 +55,6 @@ jobs:
           mkdir -p allure-results
           if [ -d allure-history/history ]; then cp -r allure-history/history allure-results/history; fi
           allure generate allure-results --clean -o allure-history
-          ls -la allure-history
 
       - name: 🚀 Deploy Allure report to GitHub Pages
         if: always()
@@ -66,23 +64,24 @@ jobs:
           publish_dir: allure-history
           keep_files: true
 
-      - name: 📤 Upload JaCoCo coverage report
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: jacoco-report
-          path: target/site/jacoco/
-
-      - name: 📤 Upload Checkstyle report
+      # ✅ Upload artifacts
+      - name: 📎 Upload Checkstyle Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: checkstyle-report
           path: target/site/checkstyle.html
 
-      - name: 📤 Upload SpotBugs report
+      - name: 🐞 Upload SpotBugs Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: spotbugs-report
           path: target/spotbugs.xml
+
+      - name: 📈 Upload JaCoCo Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jacoco-report
+          path: target/site/jacoco/
