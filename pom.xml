@@ -15,8 +15,6 @@
         <aspectj.version>1.9.24</aspectj.version>
         <allure.version>2.25.0</allure.version>
         <surefire.plugin.version>3.2.5</surefire.plugin.version>
-        <maven.checkstyle.plugin.version>3.6.0</maven.checkstyle.plugin.version>
-        <spotbugs.maven.plugin.version>4.9.3.2</spotbugs.maven.plugin.version>
     </properties>
 
     <dependencies>
@@ -92,18 +90,6 @@
             <version>2.0.13</version>
             <scope>test</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-checkstyle-plugin -->
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-checkstyle-plugin</artifactId>
-            <version>${maven.checkstyle.plugin.version}</version>
-        </dependency>
-        <!-- https://mvnrepository.com/artifact/com.github.spotbugs/spotbugs-maven-plugin -->
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-maven-plugin</artifactId>
-            <version>${spotbugs.maven.plugin.version}</version>
-        </dependency>
     </dependencies>
 
     <build>
@@ -123,6 +109,7 @@
                     </annotationProcessorPaths>
                 </configuration>
             </plugin>
+
             <!-- Surefire Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -148,6 +135,7 @@
                     <reportVersion>${allure.version}</reportVersion>
                 </configuration>
             </plugin>
+
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -172,20 +160,7 @@
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>${spotbugs.maven.plugin.version}</version>
             </plugin>
+
         </plugins>
     </build>
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-                <version>${maven.checkstyle.plugin.version}</version>
-            </plugin>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${spotbugs.maven.plugin.version}</version>
-            </plugin>
-        </plugins>
-    </reporting>
 </project>
