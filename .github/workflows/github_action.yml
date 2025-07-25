@@ -39,7 +39,10 @@ jobs:
         with:
           node-version: '20'
 
-      - run: npm install -g allure-commandline
+      - name: 📦 Install Allure CLI globally
+        run: |
+          npm install -g allure-commandline
+          echo "$(npm bin -g)" >> $GITHUB_PATH
 
       - name: 💾 Restore Allure history
         uses: actions/cache@v4
