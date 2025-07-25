@@ -138,6 +138,7 @@
                     <!-- Блок <properties> з лістенером видалено, щоб уникнути дублювання -->
                 </configuration>
             </plugin>
+
             <!-- Allure Maven Plugin -->
             <plugin>
                 <groupId>io.qameta.allure</groupId>
