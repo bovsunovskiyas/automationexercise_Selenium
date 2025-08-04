@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 
 public class Waiter {
 
@@ -56,6 +57,11 @@ public class Waiter {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+    public WebElement waitUntilClickable(WebElement element) {
+        return new WebDriverWait(driver, defaultTimeout)
+                .until(ExpectedConditions.elementToBeClickable(element));
+    }
+
     /**
      * Очікує, поки URL сторінки не буде містити очікуваний рядок.
      *
@@ -84,5 +90,18 @@ public class Waiter {
         new WebDriverWait(driver, defaultTimeout)
                 .until(ExpectedConditions.numberOfElementsToBe(locator, expectedCount));
     }
+    public boolean waitUntilInVisibleOfElementLocated(By locator) {
+        return new WebDriverWait(driver, defaultTimeout)
+                .until(ExpectedConditions.invisibilityOfElementLocated(locator));
+    }
 
+    public WebElement findOrNull(WebElement container, By locator){
+        List<WebElement> elements = container.findElements(locator);
+        return elements.isEmpty() ? null : elements.get(0);
+    }
+
+    public String getTextOrNull(WebElement container, By locator){
+        List<WebElement> elements = container.findElements(locator);
+        return elements.isEmpty() ? null : elements.get(0).getText();
+    }
 }

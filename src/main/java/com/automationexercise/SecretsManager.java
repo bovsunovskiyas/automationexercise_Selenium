@@ -1,6 +1,7 @@
 package com.automationexercise;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import lombok.val;
 
 public class SecretsManager {
 

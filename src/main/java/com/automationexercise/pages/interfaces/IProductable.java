@@ -25,6 +25,7 @@ public interface IProductable {
     By productNameLocator = By.xpath(".//p[1]");
     By addToCartButtonLocator = By.xpath(".//a[contains(@class, 'add-to-cart')][1]");
     By viewProductButtonLocator = By.xpath(".//i[contains(@class, 'fa-plus-square')][1]");
+    By overlayAddToCartButtonLocator = By.xpath(".//div[@class='overlay-content']/a[contains(@class, 'add-to-cart')]");
 
     default WebElement findOrNull(WebElement container, By locator){
         List<WebElement> elements = container.findElements(locator);
@@ -39,13 +40,14 @@ public interface IProductable {
 
     default List<ProductCard> getAllProducts(){
         List<ProductCard> productCards = new ArrayList<>();
-        List<WebElement> productContainer = BasePage.getDriver().findElements(containerLocator);
-        for (WebElement container : productContainer){
-            WebElement productImage = findOrNull(container, productImageLocator);
-            String productPrice = getTextOrNull(container, productPriceLocator);
-            String productName = getTextOrNull(container, productNameLocator);
-            WebElement addToCartButton = findOrNull(container, addToCartButtonLocator);
-            WebElement viewProductButton = findOrNull(container, viewProductButtonLocator);
+        List<WebElement> productContainers = BasePage.getDriver().findElements(containerLocator);
+        for (WebElement container : productContainers){
+            WebElement productImage = waiter().findOrNull(container, productImageLocator);
+            String productPrice = waiter().getTextOrNull(container, productPriceLocator);
+            String productName = waiter().getTextOrNull(container, productNameLocator);
+            WebElement addToCartButton = waiter().findOrNull(container, addToCartButtonLocator);
+            WebElement viewProductButton = waiter().findOrNull(container, viewProductButtonLocator);
+            WebElement overlayAddToCartButton = waiter().findOrNull(container, overlayAddToCartButtonLocator);
 
             ProductCard productCard = ProductCard.builder()
                     .image(productImage)
@@ -53,6 +55,7 @@ public interface IProductable {
                     .name(productName)
                     .addToCartButton(addToCartButton)
                     .viewProductButton(viewProductButton)
+                    .overlayAddToCartButton(overlayAddToCartButton)
                     .build();
 
             productCards.add(productCard);

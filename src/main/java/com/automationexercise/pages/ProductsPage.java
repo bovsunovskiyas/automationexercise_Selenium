@@ -2,6 +2,7 @@ package com.automationexercise.pages;
 
 import com.automationexercise.helpers.Waiter;
 import com.automationexercise.pages.interfaces.IProductable;
+import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
 public class ProductsPage extends BasePage implements IProductable {
@@ -33,6 +34,14 @@ public class ProductsPage extends BasePage implements IProductable {
         getAllProducts().get(0).getViewProductButton().click();
         return new ProductDetailsPage();
     }
+
+    @Step("Verify Product Page is successfully loaded")
+    public ProductsPage assertProductsPageSuccessfullyLoaded(){
+        waiter.waitUntilVisibleOfElementLocated(productsListLocator);
+        return new ProductsPage();
+    }
+
+
 
     // --- Methods for Search ---
 
