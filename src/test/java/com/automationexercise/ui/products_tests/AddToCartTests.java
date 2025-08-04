@@ -42,7 +42,7 @@ public class AddToCartTests extends BaseTest {
     }
 
     @Test(description = "Test Case 12: Add Products in Cart")
-    public void addProductsToCart(){
+    public void addProductsToCartTest(){
 
 //        productsPage.scrollToFirstProductElement();
 
