@@ -35,6 +35,12 @@
         </classes>
     </test>
 
+    <test name="Products tests">
+        <classes>
+            <class name="com.automationexercise.ui.products_tests.AddToCartTests"/>
+        </classes>
+    </test>
+
 
 <!--    <test name="Regression1">-->
 <!--        <classes>-->
