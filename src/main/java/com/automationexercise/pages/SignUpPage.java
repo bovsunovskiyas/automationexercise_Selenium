@@ -6,7 +6,7 @@ import lombok.Getter;
 import org.openqa.selenium.By;
 import com.automationexercise.helpers.Waiter;
 
-public class LoginPage extends BasePage{
+public class SignUpPage extends BasePage{
 
     @Getter
     private final MainMenu mainMenu = new MainMenu();
@@ -21,21 +21,24 @@ public class LoginPage extends BasePage{
     private final By loginPasswordInputLocator = By.cssSelector("input[data-qa='login-password']");
     private final By loginButtonLocator = By.cssSelector("button[data-qa='login-button']");
     private final By incorrectLoginErrorMessageLocator = By.xpath("//p[contains(text(),'Your email or password is incorrect!')]");
+    private final By incorrectSignUpErrorMessageLocator = By.xpath("//p[contains(text(),'Email Address already exist!')]");
+
+
 
     @Step("Verify Login Page is successfully loaded")
-    public LoginPage assertLoginPageSuccessfullyLoaded(){
+    public SignUpPage assertLoginPageSuccessfullyLoaded(){
         waiter.waitUntilVisibleOfElementLocated(newUserSignupHeaderLocator);
         return this;
     }
 
     @Step("Enter login email: {email}")
-    public LoginPage enterLoginEmail(String email) {
+    public SignUpPage enterLoginEmail(String email) {
         waiter.waitUntilVisibleOfElementLocated(loginEmailInputLocator).sendKeys(email);
         return this;
     }
 
     @Step("Enter login password")
-    public LoginPage enterLoginPassword(String password) {
+    public SignUpPage enterLoginPassword(String password) {
         waiter.waitUntilVisibleOfElementLocated(loginPasswordInputLocator).sendKeys(password);
         return this;
     }
@@ -52,31 +55,38 @@ public class LoginPage extends BasePage{
         return new SignupEnterAccountInfoPage();
     }
 
+    @Step("Click on Signup button")
+    public SignUpPage clickSignUpButtonIncorrect() {
+        waiter.waitUntilClickable(signupButtonLocator).click();
+        return this;
+    }
+
     @Step("Check if 'New User Signup!' header is visible")
     public boolean isNewUserSignupVisible() {
         return waiter.waitUntilVisibleOfElementLocated(newUserSignupHeaderLocator).isDisplayed();
     }
 
     @Step("Enter signup name: {name}")
-    public LoginPage enterSignupName(String name) {
+    public SignUpPage enterSignupName(String name) {
         waiter.waitUntilVisibleOfElementLocated(signupNameInputLocator).sendKeys(name);
         return this;
     }
 
     @Step("Enter signup email: {email}")
-    public LoginPage enterSignupEmail(String email) {
+    public SignUpPage enterSignupEmail(String email) {
         waiter.waitUntilVisibleOfElementLocated(signupEmailInputLocator).sendKeys(email);
         return this;
     }
 
-    @Step("Click Signup button")
-    public SignupEnterAccountInfoPage clickSignupButton() {
-        waiter.waitUntilClickable(signupButtonLocator).click();
-        return new SignupEnterAccountInfoPage();
-    }
-
-    @Step("Check if incorrect login error message is visible")
+    @Step("Check that incorrect login error message is visible")
     public boolean isIncorrectLoginErrorVisible() {
         return waiter.waitUntilVisibleOfElementLocated(incorrectLoginErrorMessageLocator).isDisplayed();
     }
+
+    @Step("Check that already exist signup error message is visible")
+    public boolean isAlreadyExistSignUpErrorVisible() {
+        return waiter.waitUntilVisibleOfElementLocated(incorrectSignUpErrorMessageLocator).isDisplayed();
+//        return this;
+    }
+
 }

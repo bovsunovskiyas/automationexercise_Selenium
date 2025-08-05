@@ -6,6 +6,9 @@ import com.automationexercise.pages.CartPage;
 import com.automationexercise.pages.HomePage;
 import com.automationexercise.pages.ProductsPage;
 import com.automationexercise.ui.BaseTest;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -41,6 +44,8 @@ public class AddToCartTests extends BaseTest {
 //        productsPage.scrollToFirstProductElement();
     }
 
+    @Severity(SeverityLevel.BLOCKER)
+    @Feature(value = "Cart")
     @Test(description = "Test Case 12: Add Products in Cart")
     public void addProductsToCartTest(){
 

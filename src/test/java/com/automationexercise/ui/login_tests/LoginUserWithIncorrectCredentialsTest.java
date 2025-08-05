@@ -2,7 +2,7 @@ package com.automationexercise.ui.login_tests;
 
 import com.automationexercise.helpers.DataRandomizer;
 import com.automationexercise.pages.HomePage;
-import com.automationexercise.pages.LoginPage;
+import com.automationexercise.pages.SignUpPage;
 import com.automationexercise.ui.BaseTest;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -15,7 +15,7 @@ public class LoginUserWithIncorrectCredentialsTest extends BaseTest {
     @Severity(SeverityLevel.MINOR)
     @Feature(value = "Auth")
     @Test(description = "Test Case 3: Login User with incorrect email and password")
-    public void testLoginUserWithIncorrectCredentialsTest(){
+    public void loginUserWithIncorrectCredentialsTest(){
 
         String incorrectEmail = DataRandomizer.getRandomEmail();
         String incorrectPassword = DataRandomizer.getRandomPassword();
@@ -32,9 +32,33 @@ public class LoginUserWithIncorrectCredentialsTest extends BaseTest {
                 .enterLoginPassword(incorrectPassword)
                 .clickLoginButton();
 
-        LoginPage loginPage = new LoginPage();
+        SignUpPage signUpPage = new SignUpPage();
 //        loginPage.isIncorrectLoginErrorVisible();
-        Assert.assertTrue(loginPage.isIncorrectLoginErrorVisible(), "Error message is not visible.");
+        Assert.assertTrue(signUpPage.isIncorrectLoginErrorVisible(), "Error message is not visible.");
 
     }
 }
+
+//    @Test
+//    public void testLoginUserWithIncorrectCredentials() {
+//
+//        // Створюємо екземпляр HomePage, передаючи залежності з BaseTest
+//        MainPage mainPage = new MainPage(driver, waiter);
+//        Assert.assertTrue(mainPage.isLogoVisible(), "Home page is not visible.");
+//
+//        // Переходимо на сторінку логіну
+//        LoginPage loginPage = mainPage.goToLoginPage();
+//
+//        // Генеруємо некоректні дані
+//        String incorrectEmail = faker.internet().emailAddress();
+//        String incorrectPassword = faker.internet().password();
+//
+//        // Виконуємо спробу входу
+//        loginPage.login(incorrectEmail, incorrectPassword);
+//
+//        // Перевіряємо, чи з'явилося повідомлення про помилку
+//        Assert.assertTrue(loginPage.isIncorrectLoginErrorVisible(), "Error message is not visible.");
+//    }
+//
+
+//    }

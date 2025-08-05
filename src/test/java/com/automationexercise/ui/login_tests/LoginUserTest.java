@@ -1,6 +1,5 @@
 package com.automationexercise.ui.login_tests;
 
-import com.automationexercise.SecretsManager;
 import com.automationexercise.pages.HomePage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -36,7 +35,7 @@ public class LoginUserTest extends BaseTest {
     @Feature(value = "Auth")
     @Test(description = "Test Case 2: Login User with correct email and password")
     @Step("Verify logged in username contains 'dani'")
-    public void testLoginUserWithCorrectCredentials() {
+    public void loginUserWithCorrectCredentialsTest() {
         Assert.assertTrue(homePage.getMainMenu().getLoggedInAsText().contains("dani"), "Logged in username does not match.");
     }
 
@@ -59,32 +58,5 @@ public class LoginUserTest extends BaseTest {
 //            WebElement loginToAccount = driver.findElement(By.xpath("//h2[text()='Login to your account']"));
 //            Assert.assertTrue(loginToAccount.isDisplayed(), "'Login to your account' header is not visible after logout.");
     }
-
-
-
-
-//    @Test
-//    public void testLoginUserWithIncorrectCredentials() {
-//
-//        // Створюємо екземпляр HomePage, передаючи залежності з BaseTest
-//        MainPage mainPage = new MainPage(driver, waiter);
-//        Assert.assertTrue(mainPage.isLogoVisible(), "Home page is not visible.");
-//
-//        // Переходимо на сторінку логіну
-//        LoginPage loginPage = mainPage.goToLoginPage();
-//
-//        // Генеруємо некоректні дані
-//        String incorrectEmail = faker.internet().emailAddress();
-//        String incorrectPassword = faker.internet().password();
-//
-//        // Виконуємо спробу входу
-//        loginPage.login(incorrectEmail, incorrectPassword);
-//
-//        // Перевіряємо, чи з'явилося повідомлення про помилку
-//        Assert.assertTrue(loginPage.isIncorrectLoginErrorVisible(), "Error message is not visible.");
-//    }
-//
-
-//    }
 
 }

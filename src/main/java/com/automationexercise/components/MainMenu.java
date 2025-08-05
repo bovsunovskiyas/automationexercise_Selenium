@@ -1,10 +1,7 @@
 package com.automationexercise.components;
 
 import com.automationexercise.helpers.Waiter;
-import com.automationexercise.pages.AccountDeletedPage;
-import com.automationexercise.pages.BasePage;
-import com.automationexercise.pages.LoginPage;
-import com.automationexercise.pages.ProductsPage;
+import com.automationexercise.pages.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 
@@ -18,12 +15,15 @@ public class MainMenu {
     private final By loggedInAsLocator = By.xpath("//a[contains(text(),'Logged in as')]");
     private final By logoutLocator = By.xpath("//a[@href='/logout']");
     private final By deleteAccountButtonLocator = By.xpath("//a[contains(text(),'Delete Account')]");
+    private final By contactUsLocator = By.xpath("//a[@href='/contact_us']");
+
+
 
 
     @Step("Click 'Signup / Login' button")
-    public LoginPage clickLoginButton() {
+    public SignUpPage clickLoginButton() {
         waiter.waitUntilClickable(signupLoginButtonLocator).click();
-        return new LoginPage();
+        return new SignUpPage();
     }
 
     @Step("Click 'Products' button")
@@ -33,15 +33,21 @@ public class MainMenu {
     }
 
     @Step("Click 'Logout' button")
-    public LoginPage clickLogoutButton() {
+    public SignUpPage clickLogoutButton() {
         waiter.waitUntilClickable(logoutLocator).click();
-        return new LoginPage();
+        return new SignUpPage();
     }
 
     @Step("Click 'Delete Account' button")
     public AccountDeletedPage deleteAccount() {
         waiter.waitUntilClickable(deleteAccountButtonLocator).click();
         return new AccountDeletedPage();
+    }
+
+    @Step("Click 'Contact us' button")
+    public ContactUsPage clickContactUsButton() {
+        waiter.waitUntilClickable(contactUsLocator).click();
+        return new ContactUsPage();
     }
 
     @Step("Get logged in user text")

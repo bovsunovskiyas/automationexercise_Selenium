@@ -52,7 +52,7 @@
 9. Click 'Logout' button
 10. Verify that user is navigated to login page
 
-Test Case 5: Register User with existing email
+✅Test Case 5: Register User with existing email
 1. Launch browser
 2. Navigate to url 'http://automationexercise.com'
 3. Verify that home page is visible successfully

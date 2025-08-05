@@ -2,7 +2,10 @@ package com.automationexercise.helpers;
 
 import com.automationexercise.models.Gender;
 import com.github.javafaker.Faker;
+import com.github.javafaker.File;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
@@ -81,5 +84,18 @@ public class DataRandomizer {
         String formattedDate = localDate.format(formatter);
         return formattedDate.split(" ");
     }
+
+    public static String getRandomSubject(){
+        return faker.app().author();
+    }
+
+    public static String getRandomMessage(){
+        return faker.medical().diseaseName();
+    }
+
+
+
+
+
 
 }

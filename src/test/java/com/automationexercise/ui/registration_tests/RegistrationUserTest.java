@@ -15,9 +15,9 @@ import static com.automationexercise.helpers.DataRandomizer.*;
 public class RegistrationUserTest extends BaseTest {
 
     @Severity(SeverityLevel.BLOCKER)
-    @Feature(value = "Auth")
+    @Feature(value = "SignUp")
     @Test(description = "Test Case 1: Register User with valid details and verify account is created and deleted successfully")
-    public void testRegisterUserFlow() {
+    public void registerUserFlowTest() {
 
         String[] randomBirtDate = DataRandomizer.getRandomBirthDate();
         String randomFirstName = DataRandomizer.getRandomFirstName();
@@ -43,13 +43,13 @@ public class RegistrationUserTest extends BaseTest {
 
         HomePage homePage = new HomePage();
 
-        LoginPage loginPage = homePage
+        SignUpPage signUpPage = homePage
                 .openMainPage()
                 .assertMainPageSuccessfullyLoaded()
                 .getMainMenu()
                 .clickLoginButton();
 
-        SignupEnterAccountInfoPage signupEnterAccountInfoPage = loginPage
+        SignupEnterAccountInfoPage signupEnterAccountInfoPage = signUpPage
                 .assertLoginPageSuccessfullyLoaded()
                 .enterSignupName(user.getFirstName() + " " + user.getLastName())
                 .enterSignupEmail(user.getEmail())
@@ -90,5 +90,29 @@ public class RegistrationUserTest extends BaseTest {
 
         accountDeletedPage.clickContinueButton();
         homePage.assertMainPageSuccessfullyLoaded();
+    }
+
+    @Severity(SeverityLevel.CRITICAL)
+    @Feature(value = "SignUp")
+    @Test(description = "Test Case 5: Register User with existing email")
+    public void RegisterWithExistingEmailTest() {
+
+        SignUpPage signUpPage = new HomePage()
+                .openMainPage()
+                .assertMainPageSuccessfullyLoaded()
+                .getMainMenu()
+                .clickLoginButton()
+                .assertLoginPageSuccessfullyLoaded()
+//                .enterLoginEmail(SecretsManager.get("USER_EMAIL"))
+//                .enterLoginPassword(SecretsManager.get("USER_PASSWORD"))
+                .enterSignupName("burt.abernathy")
+                .enterSignupEmail("780a_burt.abernathy@gmail.com")
+                .clickSignUpButtonIncorrect();
+
+//        .isAlreadyExistSignUpErrorVisible();
+
+        Assert.assertTrue(signUpPage.isAlreadyExistSignUpErrorVisible(), "Error message is not visible.");
+
+
     }
 }
