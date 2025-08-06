@@ -42,7 +42,6 @@ pipeline {
                          sh 'java -version'
                          sh 'mvn -version'
 
-                         //  для дебагу
                          sh 'which chromedriver'
                          sh 'chromedriver --version'
                          sh 'google-chrome --version || true'
