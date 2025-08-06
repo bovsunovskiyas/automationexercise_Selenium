@@ -3,6 +3,7 @@ package com.automationexercise.pages;
 import com.automationexercise.helpers.Waiter;
 import io.qameta.allure.Step;
 import lombok.Getter;
+import lombok.Setter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -15,11 +16,16 @@ public abstract class BasePage {
     protected final By logoMainLocator = By.xpath("//img[contains(@src, 'logo.png')]");
     protected final By scrollToFirstProductElement = By.xpath("//img[contains(@src, '/get_product_picture/1')]");
 
-    @Getter
-    private static WebDriver driver;
+//    @Getter
+//    private static WebDriver driver;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static void setDriver(WebDriver driver) {
-        BasePage.driver = driver;
+        BasePage.driver.set(driver);
+    }
+
+    public static WebDriver getDriver() {
+        return driver.get();
     }
 
     @Step("Scroll to the first product element")
