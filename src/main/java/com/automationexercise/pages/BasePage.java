@@ -11,6 +11,11 @@ import org.openqa.selenium.WebDriver;
 public abstract class BasePage {
 
     private final Waiter waiter = new Waiter(BasePage.getDriver());
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    public static ThreadLocal<WebDriver> getThreadLocalDriver() {
+        return driver;
+    }
 
     // Locators
     protected final By logoMainLocator = By.xpath("//img[contains(@src, 'logo.png')]");
@@ -18,7 +23,6 @@ public abstract class BasePage {
 
 //    @Getter
 //    private static WebDriver driver;
-    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static void setDriver(WebDriver driver) {
         BasePage.driver.set(driver);

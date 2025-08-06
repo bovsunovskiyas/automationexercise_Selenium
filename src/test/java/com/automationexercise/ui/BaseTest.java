@@ -11,7 +11,7 @@ public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     @Step("Start browser before each test")
-    public void startBrowser(){
+    public synchronized void startBrowser(){
         BrowserFactory browserFactory = new BrowserFactory();
         WebDriver driver = browserFactory.getWebDriverInstance();
         BasePage.setDriver(driver);
@@ -20,7 +20,7 @@ public abstract class BaseTest {
     @AfterMethod(alwaysRun = true)
     @Step("Close browser after each test")
     public void closeBrowser() {
-        if (BasePage.getDriver() != null) {
+        if (BasePage.getThreadLocalDriver() != null) {
             BasePage.getDriver().quit();
         }
     }
