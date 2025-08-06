@@ -41,6 +41,12 @@ pipeline {
                          sh 'echo "PATH is set to: $PATH"'
                          sh 'java -version'
                          sh 'mvn -version'
+
+                         //  для дебагу
+                         sh 'which chromedriver'
+                         sh 'chromedriver --version'
+                         sh 'google-chrome --version || true'
+
                          echo '----------------------------'
 
                          echo 'Запуск збірки та виконання тестів...'
