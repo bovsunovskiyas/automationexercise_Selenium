@@ -45,7 +45,7 @@ pipeline {
 
                          echo 'Запуск збірки та виконання тестів...'
                          // Використовуємо 'verify', що є більш повною фазою життєвого циклу Maven
-                         sh 'mvn clean test'
+                         sh 'mvn clean test -Dsurefire.printSummary=true'
                      }
                  }
              }
