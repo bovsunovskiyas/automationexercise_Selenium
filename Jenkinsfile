@@ -56,7 +56,17 @@ pipeline {
          // чи були тести успішними, чи впали з помилкою.
          always {
              echo 'Генерація звіту Allure...'
-             allure includeProperties: false, report: 'allure-report', results: [[path: 'target/allure-results']]
+//              allure includeProperties: false, report: 'allure-report', results: [[path: 'target/allure-results']]
+
+            // Перевірка наявності результатів перед генерацією звіту
+            script {
+                def resultsExist = fileExists 'target/allure-results'
+                if (resultsExist) {
+                    allure includeProperties: false, report: 'allure-report', results: [[path: 'target/allure-results']]
+                } else {
+                    echo '⚠️ Каталог target/allure-results не знайдено!'
+                }
+            }
 
              echo 'Архівуємо звіт Allure як артефакт...'
                          archiveArtifacts artifacts: 'allure-report/**', allowEmptyArchive: true

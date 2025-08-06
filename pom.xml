@@ -122,7 +122,6 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
-                    <!-- Блок <properties> з лістенером видалено, щоб уникнути дублювання -->
                 </configuration>
             </plugin>
 
