@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeMethod;
 public abstract class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
-    @Step("Start browser before each test")
+//    @Step("Start browser before each test")
     public synchronized void startBrowser(){
         BrowserFactory browserFactory = new BrowserFactory();
         WebDriver driver = browserFactory.getWebDriverInstance();
@@ -18,7 +18,7 @@ public abstract class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    @Step("Close browser after each test")
+//    @Step("Close browser after each test")
     public void closeBrowser() {
         if (BasePage.getThreadLocalDriver() != null) {
             BasePage.getDriver().quit();
