@@ -1,11 +1,6 @@
 pipeline {
     // Вказуємо, на якому агенті (вузлі) Jenkins буде виконуватися цей пайплайн
-    agent {
-            docker {
-                image 'selenium/standalone-chrome:latest'
-                args '-u root:root' // дозволяє встановлювати пакети, якщо треба
-            }
-        }
+    agent any
 
     // Визначаємо інструменти, які потрібно підготувати перед запуском.
     // Цей блок автоматично додасть потрібні директорії (напр., /bin) до змінної PATH.
@@ -46,9 +41,9 @@ pipeline {
                          sh 'echo "PATH is set to: $PATH"'
                          sh 'java -version'
                          sh 'mvn -version'
+
                          echo '----------------------------'
                          echo 'Запуск збірки та виконання тестів...'
-//                          sh 'google-chrome --version || echo "Chrome not found"'
                          sh 'mvn clean test'
                      }
                  }
