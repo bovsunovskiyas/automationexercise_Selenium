@@ -1,6 +1,11 @@
 pipeline {
     // Вказуємо, на якому агенті (вузлі) Jenkins буде виконуватися цей пайплайн
-    agent any
+    agent {
+            docker {
+                image 'selenium/standalone-chrome:latest'
+                args '-u root:root' // дозволяє встановлювати пакети, якщо треба
+            }
+        }
 
     // Визначаємо інструменти, які потрібно підготувати перед запуском.
     // Цей блок автоматично додасть потрібні директорії (напр., /bin) до змінної PATH.
@@ -19,18 +24,6 @@ pipeline {
                  checkout scm
              }
          }
-
-         stage('Install Chrome') {
-                     steps {
-                         echo 'Installing latest Google Chrome...'
-                         sh '''
-                             wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -
-                             sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list'
-                             apt-get update
-                             apt-get install -y google-chrome-stable
-                         '''
-                     }
-                 }
 
          stage('Copy Allure History') {
                      steps {
@@ -54,10 +47,10 @@ pipeline {
                          sh 'java -version'
                          sh 'mvn -version'
                          echo '----------------------------'
-
                          echo 'Запуск збірки та виконання тестів...'
-                         // Використовуємо 'verify', що є більш повною фазою життєвого циклу Maven
-                         sh 'mvn clean test -Dsurefire.printSummary=true'
+
+                         sh 'google-chrome --version || echo "Chrome not found"'
+                         sh 'mvn clean test'
                      }
                  }
              }
