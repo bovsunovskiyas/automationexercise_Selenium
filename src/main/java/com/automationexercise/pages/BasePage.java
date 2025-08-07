@@ -13,16 +13,16 @@ public abstract class BasePage {
     private final Waiter waiter = new Waiter(BasePage.getDriver());
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public static ThreadLocal<WebDriver> getThreadLocalDriver() {
-        return driver;
-    }
-
     // Locators
     protected final By logoMainLocator = By.xpath("//img[contains(@src, 'logo.png')]");
     protected final By scrollToFirstProductElement = By.xpath("//img[contains(@src, '/get_product_picture/1')]");
 
 //    @Getter
 //    private static WebDriver driver;
+
+    public static ThreadLocal<WebDriver> getThreadLocalDriver() {
+        return driver;
+    }
 
     public static void setDriver(WebDriver driver) {
         BasePage.driver.set(driver);
@@ -36,19 +36,4 @@ public abstract class BasePage {
     public void scrollToFirstProductElement(){
         ((JavascriptExecutor) getDriver()).executeScript("arguments[0].scrollIntoView(true);", waiter.waitUntilVisibleOfElementLocated(scrollToFirstProductElement));
     }
-
-
-//    // ThreadLocal для безпечного зберігання драйвера в багатопотоковому середовищі
-//    private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
-//
-//    // Метод для встановлення драйвера
-//    public static void setDriver(WebDriver driver) {
-//        driverThreadLocal.set(driver);
-//    }
-//
-//    // Метод для отримання драйвера
-//    public static WebDriver getDriver() {
-//        return driverThreadLocal.get();
-//    }
-
 }
