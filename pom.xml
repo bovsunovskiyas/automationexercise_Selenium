@@ -13,8 +13,10 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
         <aspectj.version>1.9.24</aspectj.version>
-        <allure.version>2.25.0</allure.version>
-        <surefire.plugin.version>3.2.5</surefire.plugin.version>
+        <allure.version>2.29.1</allure.version>
+        <surefire.plugin.version>3.5.3</surefire.plugin.version>
+        <log4j.version>2.25.1</log4j.version>
+        <browser>CHROME</browser>
     </properties>
 
     <dependencies>
@@ -27,7 +29,7 @@
         <dependency>
             <groupId>io.github.bonigarcia</groupId>
             <artifactId>webdrivermanager</artifactId>
-            <version>6.1.0</version>
+            <version>6.2.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -83,13 +85,35 @@
             <version>3.2.0</version>
         </dependency>
 
-        <!-- Logging implementation to remove SLF4J warning -->
+        <!-- Logging implementation -->
+<!--        <dependency>-->
+<!--            <groupId>org.slf4j</groupId>-->
+<!--            <artifactId>slf4j-simple</artifactId>-->
+<!--            <version>2.0.13</version>-->
+<!--            <scope>test</scope>-->
+<!--        </dependency>-->
+
+        <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
         <dependency>
             <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.13</version>
-            <scope>test</scope>
+            <artifactId>slf4j-api</artifactId>
+            <version>2.0.17</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-core -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.logging.log4j/log4j-slf4j-impl -->
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-slf4j2-impl</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -122,6 +146,9 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <systemPropertyVariables>
+                       <browser>${browser}</browser>
+                    </systemPropertyVariables>
                 </configuration>
             </plugin>
 
