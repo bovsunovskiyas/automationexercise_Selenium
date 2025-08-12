@@ -4,9 +4,12 @@ import com.automationexercise.helpers.Waiter;
 import com.automationexercise.pages.*;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MainMenu {
 
+    private static final Logger logger = LoggerFactory.getLogger(MainMenu.class);
     private final Waiter waiter = new Waiter(BasePage.getDriver());
 
     // --- Locators ---
@@ -22,6 +25,7 @@ public class MainMenu {
 
     @Step("Click 'Signup / Login' button")
     public SignUpPage clickLoginButton() {
+        logger.info("Clicking 'Signup / Login' button");
         waiter.waitUntilClickable(signupLoginButtonLocator).click();
         return new SignUpPage();
     }
@@ -52,6 +56,7 @@ public class MainMenu {
 
     @Step("Get logged in user text")
     public String getLoggedInAsText() {
+        logger.info("Getting logged in user text");
         return waiter.waitUntilVisibleOfElementLocated(loggedInAsLocator).getText();
     }
 }

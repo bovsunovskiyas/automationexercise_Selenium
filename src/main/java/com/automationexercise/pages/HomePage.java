@@ -23,6 +23,7 @@ public class HomePage extends BasePage{
         public HomePage openMainPage(){
 //                String baseUrl = SecretsManager.get("BASE_URL");
                 String baseUrl = "https://automationexercise.com/";
+                logger.info("Opening main page with URL: {}", baseUrl);
                 getDriver().get(baseUrl);
                 waiter.waitUntilUrlToBe(baseUrl);
                 return this;
@@ -32,6 +33,7 @@ public class HomePage extends BasePage{
         public HomePage assertMainPageSuccessfullyLoaded() {
                 waiter.waitUntilVisibleOfElementLocated(logoMainLocator);
                 waiter.waitUntilVisibleOfElementLocated(featuresItemsTitleLocator);
+                logger.info("Assert: main page successfully loaded: [PASS]");
                 return this;
         }
 

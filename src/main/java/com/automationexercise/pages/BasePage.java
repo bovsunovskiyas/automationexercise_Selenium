@@ -7,9 +7,14 @@ import lombok.Setter;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.slf4j.Logger;
 
 public abstract class BasePage {
 
+
+    protected final Logger logger = org.slf4j.LoggerFactory.getLogger(this.getClass());
+
+    @Getter @Setter
     private final Waiter waiter = new Waiter(BasePage.getDriver());
     private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 

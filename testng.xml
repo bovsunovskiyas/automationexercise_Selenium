@@ -4,24 +4,6 @@
 <!--    <suite name="Regression Automation Exercise Full Test Suite" parallel="tests" thread-count="2">-->
 <suite name="Regression Automation Exercise Test Suite" parallel="tests" thread-count="4">
 
-<!--    <test name="UI Tests">-->
-<!--        <packages>-->
-<!--            <package name="com.automationexercise.ui.tests"/>-->
-<!--        </packages>-->
-<!--    </test>-->
-
-<!--    <test name="API Tests">-->
-<!--        <classes>-->
-<!--            <class name="com.automationexercise.api.tests.ProductsApiTests"/>-->
-<!--            <class name="com.automationexercise.api.tests.LoginAndSearchApiTests"/>-->
-<!--            <class name="com.automationexercise.api.tests.UserAccountApiTests"/>-->
-<!--        </classes>-->
-<!--    </test>-->
-
-<!--    <listeners>-->
-<!--        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>-->
-<!--    </listeners>-->
-
     <test name="Login tests">
         <classes>
             <class name="com.automationexercise.ui.login_tests.LoginUserTest"/>
@@ -40,4 +22,51 @@
             <class name="com.automationexercise.ui.products_tests.AddToCartTests"/>
         </classes>
     </test>
+
+<!--    <test name="UI Tests">-->
+<!--        <packages>-->
+<!--            <package name="com.automationexercise.ui.tests"/>-->
+<!--        </packages>-->
+<!--    </test>-->
+
+<!--    <test name="API Tests">-->
+<!--        <classes>-->
+<!--            <class name="com.automationexercise.api.tests.ProductsApiTests"/>-->
+<!--            <class name="com.automationexercise.api.tests.LoginAndSearchApiTests"/>-->
+<!--            <class name="com.automationexercise.api.tests.UserAccountApiTests"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <listeners>-->
+<!--        <listener class-name="io.qameta.allure.testng.AllureTestNg"/>-->
+<!--    </listeners>-->
+
+    <!-- Cross-browser tests-->
+<!--    &lt;!&ndash; Chrome &ndash;&gt;-->
+<!--    <test name="UI Tests - Chrome">-->
+<!--        <parameter name="browser" value="CHROME" />-->
+<!--        <classes>-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserTest" />-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserWithIncorrectCredentialsTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash; Firefox &ndash;&gt;-->
+<!--    <test name="UI Tests - Firefox">-->
+<!--        <parameter name="browser" value="FIREFOX" />-->
+<!--        <classes>-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserTest" />-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserWithIncorrectCredentialsTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    &lt;!&ndash; Safari &ndash;&gt;-->
+<!--    <test name="UI Tests - Safari">-->
+<!--        <parameter name="browser" value="SAFARI" />-->
+<!--        <classes>-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserTest" />-->
+<!--            <class name="com.automationexercise.ui.login_tests.LoginUserWithIncorrectCredentialsTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
 </suite>
