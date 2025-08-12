@@ -13,7 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <lombok.version>1.18.38</lombok.version>
         <aspectj.version>1.9.24</aspectj.version>
-        <allure.version>2.29.1</allure.version>
+        <allure.version>2.25.0</allure.version>
         <surefire.plugin.version>3.5.3</surefire.plugin.version>
         <log4j.version>2.25.1</log4j.version>
         <browser>CHROME</browser>
