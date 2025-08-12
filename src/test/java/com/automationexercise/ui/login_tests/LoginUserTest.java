@@ -1,5 +1,6 @@
 package com.automationexercise.ui.login_tests;
 
+import com.automationexercise.helpers.MyTestListener;
 import com.automationexercise.pages.HomePage;
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;
@@ -7,9 +8,11 @@ import io.qameta.allure.SeverityLevel;
 import io.qameta.allure.Step;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.automationexercise.ui.BaseTest;
 
+@Listeners(value = MyTestListener.class)
 public class LoginUserTest extends BaseTest {
 
     private HomePage homePage;

@@ -17,6 +17,12 @@ public class DataRandomizer {
 
     public static final Faker faker = new Faker();
 
+    public static String getRandomUuid(){
+        UUID uuid = UUID.randomUUID();
+        String randomPart = uuid.toString().substring(0,4);
+        return randomPart + "_";
+    }
+
     public static String getRandomEmail(){
         UUID uuid = UUID.randomUUID();
         String randomPart = uuid.toString().substring(0,4);
