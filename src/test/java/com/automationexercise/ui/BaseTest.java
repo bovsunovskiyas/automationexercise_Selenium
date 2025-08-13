@@ -31,37 +31,37 @@ public abstract class BaseTest {
 
     @AfterMethod(alwaysRun = true)
 //    @Step("Close browser after each test")
-    public void closeBrowser(ITestResult result) {
-//        BasePage.getDriver().quit();
-//        if (BasePage.getThreadLocalDriver() != null) {
-//            BasePage.getDriver().quit();
-//        }
+    public void closeBrowser() {
+        if (BasePage.getThreadLocalDriver() != null) {
+            BasePage.getDriver().quit();
+        }
 
 //
 //    }
 //}
-        String pattern = "dd.MM.yyyy_HH-mm-ss";
-        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
-        String timestampString = sdf.format(new Date());
-
-        if (result.getStatus() == ITestResult.FAILURE && BasePage.getDriver() != null) {
-            byte[] screenshot = ((TakesScreenshot) BasePage.getDriver()).getScreenshotAs(OutputType.BYTES);
-            Allure.addAttachment(
-                    "Allure_" + timestampString + "_" + result.getName(),
-                    "image/png",
-                    new ByteArrayInputStream(screenshot),
-                    ".png"
-            );
-
-            String pageSource = BasePage.getDriver().getPageSource();
-            Allure.addAttachment("Page Source", "text/html", pageSource, ".html");
-
-        }
-
-        if (BasePage.getDriver() != null) {
-            BasePage.getDriver().quit();
-            BasePage.setDriver(null); // очищаємо ThreadLocal
-        }
+        //    public void closeBrowser(ITestResult result) {
+//        String pattern = "dd.MM.yyyy_HH-mm-ss";
+//        SimpleDateFormat sdf = new SimpleDateFormat(pattern);
+//        String timestampString = sdf.format(new Date());
+//
+//        if (result.getStatus() == ITestResult.FAILURE && BasePage.getDriver() != null) {
+//            byte[] screenshot = ((TakesScreenshot) BasePage.getDriver()).getScreenshotAs(OutputType.BYTES);
+//            Allure.addAttachment(
+//                    "Allure_" + timestampString + "_" + result.getName(),
+//                    "image/png",
+//                    new ByteArrayInputStream(screenshot),
+//                    ".png"
+//            );
+//
+//            String pageSource = BasePage.getDriver().getPageSource();
+//            Allure.addAttachment("Page Source", "text/html", pageSource, ".html");
+//
+//        }
+//
+//        if (BasePage.getDriver() != null) {
+//            BasePage.getDriver().quit();
+//            BasePage.setDriver(null); // очищаємо ThreadLocal
+//        }
     }
 }
 
