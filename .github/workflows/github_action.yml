@@ -34,11 +34,10 @@ jobs:
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: mvn clean test
 
-      - name: 🛠 Install Allure Commandline
-        uses: actions/setup-node@v4
+      - name: 🛠 Install Allure CLI
+        uses: simple-elf/allure-report-action@master
         with:
-          node-version: '20'
-      - run: npm install -g allure-commandline
+          allure_version: 2.27.0
 
       - name: 💾 Restore Allure history
         uses: actions/cache@v4
