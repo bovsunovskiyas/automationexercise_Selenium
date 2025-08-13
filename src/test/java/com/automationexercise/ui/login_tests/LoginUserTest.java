@@ -47,7 +47,6 @@ public class LoginUserTest extends BaseTest {
     @Test(description = "Test Case 4: Logout User")
 //    @Step("Logout user and verify login page is loaded")
     public void testLogOutUser() {
-
         homePage
                 .getMainMenu()
                 .clickLogoutButton()
