@@ -4,14 +4,11 @@ import com.automationexercise.pages.BasePage;
 import io.qameta.allure.Allure;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
-import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
-
 import java.io.ByteArrayInputStream;
-import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
+
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
@@ -41,12 +38,9 @@ public class MyTestListener implements ITestListener {
                     new ByteArrayInputStream(screenshot)
             );
 
-
             String pageSource = BasePage.getDriver().getPageSource();
             Allure.addAttachment("Page Source", "text/html", pageSource, ".html");
-
         }
-
 
     }
 }
