@@ -27,17 +27,17 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: 🛠 Install Allure CLI
-        uses: simple-elf/allure-report-action@master
-        with:
-          allure_version: 2.27.0
-
       - name: 🧪 Run TestNG tests with Maven
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
           USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
         run: mvn clean test
+
+      - name: 🛠 Install Allure CLI
+        uses: simple-elf/allure-report-action@master
+        with:
+          allure_version: 2.27.0
 
       - name: 💾 Restore Allure history
         uses: actions/cache@v4

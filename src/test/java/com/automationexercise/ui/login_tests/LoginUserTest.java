@@ -28,7 +28,7 @@ public class LoginUserTest extends BaseTest {
                 .assertLoginPageSuccessfullyLoaded()
 //                .enterLoginEmail(SecretsManager.get("USER_EMAIL"))
 //                .enterLoginPassword(SecretsManager.get("USER_PASSWORD"))
-                .enterLoginEmail("780a_burt.abernathy@gmail.coma")
+                .enterLoginEmail("780a_burt.abernathy@gmail.com")
                 .enterLoginPassword("gcc9ebfs8bj2")
                 .clickLoginButton();
     }
@@ -47,7 +47,6 @@ public class LoginUserTest extends BaseTest {
     @Test(description = "Test Case 4: Logout User")
 //    @Step("Logout user and verify login page is loaded")
     public void testLogOutUser() {
-
         homePage
                 .getMainMenu()
                 .clickLogoutButton()
