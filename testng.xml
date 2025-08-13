@@ -4,9 +4,9 @@
 <!--    <suite name="Regression Automation Exercise Full Test Suite" parallel="tests" thread-count="2">-->
 <suite name="Regression Automation Exercise Test Suite" parallel="tests" thread-count="4">
 
-    <listeners>
-        <listener class-name="com.automationexercise.helpers.MyTestListener"/>
-    </listeners>
+<!--    <listeners>-->
+<!--        <listener class-name="com.automationexercise.helpers.MyTestListener"/>-->
+<!--    </listeners>-->
 
     <test name="Login tests">
         <classes>

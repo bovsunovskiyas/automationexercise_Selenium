@@ -21,16 +21,14 @@ public class MyTestListener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-
+        result.setStatus(ITestResult.FAILURE);
         if (BasePage.getDriver() != null){
-            result.setStatus(ITestResult.FAILURE);
             String testName = result.getName();
 
             String pattern = "dd.MM.yyyy_HH-mm-ss";
             SimpleDateFormat sdf = new SimpleDateFormat(pattern);
             String timestampString = sdf.format(new Date());
             String timestamp2 = timestampString.toLowerCase();
-
 
             String fileName = timestampString.replace(":", "-") + "_" + testName;
             ScreenshotHelper.takeScreenshot(BasePage.getDriver(), fileName);

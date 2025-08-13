@@ -40,7 +40,6 @@ public abstract class BaseTest {
 //
 //    }
 //}
-
         String pattern = "dd.MM.yyyy_HH-mm-ss";
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         String timestampString = sdf.format(new Date());
