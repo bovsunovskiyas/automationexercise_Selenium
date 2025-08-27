@@ -6,13 +6,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.events.EventFiringDecorator;
 
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class BrowserFactory {
 
-    public WebDriver getWebDriverInstance(Browser browser){
+    public WebDriver getWebDriverInstance(Browser browser) throws MalformedURLException {
+
 
         return switch (browser){
             case CHROME -> {
@@ -32,8 +38,32 @@ public class BrowserFactory {
             }
             case FIREFOX -> new FirefoxDriver();
             case SAFARI -> new SafariDriver();
+            case REMOTE -> {
+                ChromeOptions options = new ChromeOptions();
+                options.setCapability("browserVersion", "138.0.7204.183-8");
+                options.setCapability("moon:options", new HashMap<String, Object>() {{
+                    put("name", "Test badge...");
+                    put("sessionTimeout", "15m");
+                    put("env", new ArrayList<String>() {{
+                        add("TZ=UTC");
+                    }});
+                    put("labels", new HashMap<String, Object>() {{
+                        put("manual", "true");
+                    }});
+                    put("enableVideo", false);
+                }});
+                options.addArguments("--headless");
+
+                RemoteWebDriver remote = new RemoteWebDriver(
+                        new URL("http://moon.aerokube.local/wd/hub"),
+                        options
+                );
+
+                LoggingListener loggingListener = new LoggingListener();
+                WebDriver decoratedWebdriver = new EventFiringDecorator<>(loggingListener).decorate(remote);
+                yield decoratedWebdriver;
+            }
 //            default -> new ChromeDriver();
         };
     }
-
 }
