@@ -14,6 +14,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Parameters;
 
 import java.io.ByteArrayInputStream;
+import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -22,7 +23,7 @@ public abstract class BaseTest {
     @BeforeMethod(alwaysRun = true)
     @Parameters({"browser"})
 //    @Step("Start browser before each test")
-    public synchronized void startBrowser(String browser){
+    public synchronized void startBrowser(String browser) throws MalformedURLException {
         Browser browserValue = Browser.valueOf(browser);
         BrowserFactory browserFactory = new BrowserFactory();
         WebDriver driver = browserFactory.getWebDriverInstance(browserValue);
